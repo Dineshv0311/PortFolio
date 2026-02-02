@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="DINESH V - Creative Poster Designer - Transforming ideas into bold visual stories through posters. View my portfolio of event, movie, social, and branding posters.">
+  <meta name="keywords" content="poster design, graphic design, typography, visual design, creative posters">
+  <meta name="author" content="DINESH V">
+  <title>DINESH V | Creative Poster Designer Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">DINESH V</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#posters" class="nav-link">Posters</a></li>
+        <li><a href="#upload" class="nav-link">Upload</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-shape"></div>
+      <div class="hero-shape"></div>
+      <div class="hero-shape"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Creative Poster Designer</h1>
+      <p class="hero-subtitle">Transforming ideas into bold visual stories through posters.</p>
+      <div class="hero-cta">
+        <a href="#posters" class="btn btn-primary">View Posters</a>
+        <a href="#upload" class="btn btn-secondary">Upload My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTERS GALLERY SECTION -->
+  <section class="section" id="posters">
+    <div class="container">
+      <div class="section-title">
+        <h2>My Poster Collection</h2>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="event">Event</button>
+        <button class="filter-btn" data-filter="social">Social</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="concept">Concept</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Posters will be dynamically inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- UPLOAD SECTION -->
+  <section class="section" id="upload">
+    <div class="container">
+      <div class="section-title">
+        <h2>Upload Your Poster</h2>
+      </div>
+
+      <div class="upload-container">
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📤</div>
+          <p class="upload-text">Drag & Drop your poster here</p>
+          <p class="upload-subtext">or click to browse (JPG, PNG)</p>
+          <input type="file" id="fileInput" accept="image/jpeg,image/png">
+        </div>
+
+        <form class="upload-form" id="uploadForm">
+          <div class="form-group">
+            <label for="posterTitle" class="form-label">Poster Title *</label>
+            <input type="text" id="posterTitle" class="form-input" placeholder="Enter poster title" required>
+          </div>
+
+          <div class="form-group">
+            <label for="posterDescription" class="form-label">Description</label>
+            <textarea id="posterDescription" class="form-textarea" placeholder="Describe your poster..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="posterCategory" class="form-label">Category *</label>
+            <select id="posterCategory" class="form-select" required>
+              <option value="">Select a category</option>
+              <option value="event">Event</option>
+              <option value="social">Social</option>
+              <option value="branding">Branding</option>
+              <option value="concept">Concept</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Upload Poster</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+
+      <div class="about-content">
+        <div>
+          <img
+            src="C:/Users/vdine/.gemini/antigravity/brain/700e360f-5a86-4598-aca5-6196dd4774b9/designer_profile_1770053263137.png"
+            alt="Designer Profile" class="about-image" id="profileImage">
+        </div>
+        <div class="about-text">
+          <h3>Passionate Visual Storyteller</h3>
+          <p>
+            I'm a poster designer with a deep passion for visual storytelling and creative expression.
+            My work focuses on transforming abstract ideas into bold, eye-catching posters that communicate
+            powerful messages through typography, color, and composition.
+          </p>
+          <p>
+            Every poster I create is a unique blend of artistic vision and strategic design, crafted to
+            capture attention and leave a lasting impression. From event promotions to movie posters,
+            I bring concepts to life with creativity and precision.
+          </p>
+
+          <h4>Skills & Expertise</h4>
+          <div class="skills-grid">
+            <div class="skill-tag">Canva</div>
+            <div class="skill-tag">Photoshop</div>
+            <div class="skill-tag">Figma</div>
+            <div class="skill-tag">Poster Design</div>
+            <div class="skill-tag">Color Theory</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATIVE PROCESS SECTION -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>My Creative Process</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step fade-in">
+          <div class="process-icon">💡</div>
+          <h4>Idea & Concept</h4>
+          <p>Understanding the message and brainstorming creative concepts that resonate with the target audience.</p>
+        </div>
+
+        <div class="process-step fade-in">
+          <div class="process-icon">🎨</div>
+          <h4>Moodboard & Colors</h4>
+          <p>Creating visual inspiration boards and selecting the perfect color palette to set the tone.</p>
+        </div>
+
+        <div class="process-step fade-in">
+          <div class="process-icon">✍️</div>
+          <h4>Typography & Layout</h4>
+          <p>Choosing expressive fonts and designing the composition to create visual hierarchy and impact.</p>
+        </div>
+
+        <div class="process-step fade-in">
+          <div class="process-icon">✨</div>
+          <h4>Final Design</h4>
+          <p>Refining details, adding finishing touches, and delivering a polished poster ready to make an impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+      </div>
+
+      <div class="contact-container">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="contactName" class="form-label">Name *</label>
+            <input type="text" id="contactName" class="form-input" placeholder="Your name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail" class="form-label">Email *</label>
+            <input type="email" id="contactEmail" class="form-input" placeholder="your@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage" class="form-label">Message *</label>
+            <textarea id="contactMessage" class="form-textarea" placeholder="Your message..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+            <span>📷</span>
+          </a>
+          <a href="https://behance.net" target="_blank" class="social-link" aria-label="Behance">
+            <span>🎨</span>
+          </a>
+          <a href="https://dribbble.com" target="_blank" class="social-link" aria-label="Dribbble">
+            <span>🏀</span>
+          </a>
+          <a href="mailto:designer@email.com" class="social-link" aria-label="Email">
+            <span>✉️</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 DINESH V. All rights reserved. Designed with passion.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+      <img src="" alt="Poster preview" class="lightbox-image" id="lightboxImage">
+      <div class="lightbox-info">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxCategory"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
