@@ -7,7 +7,6 @@
 // ===================================
 let posters = [];
 let currentFilter = 'all';
-let uploadedFile = null;
 
 // ===================================
 // INITIALIZE APP
@@ -17,75 +16,77 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeApp() {
-  loadPostersFromStorage();
+  loadPosters();
   renderGallery();
   setupEventListeners();
   setupScrollAnimations();
-  addSamplePosters();
 }
 
 // ===================================
-// SAMPLE POSTERS (Initial Gallery)
+// LOAD POSTERS (8 Provided Images)
 // ===================================
-function addSamplePosters() {
-  // Only add sample posters if storage is empty
-  if (posters.length === 0) {
-    const samplePosters = [
-      {
-        id: Date.now() + 1,
-        title: 'Music Festival 2026',
-        description: 'Summer music festival poster with vibrant colors',
-        category: 'event',
-        image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=600&fit=crop'
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Climate Action Now',
-        description: 'Social awareness campaign poster',
-        category: 'social',
-        image: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b6?w=400&h=600&fit=crop'
-      },
-      {
-        id: Date.now() + 3,
-        title: 'Brand Identity Launch',
-        description: 'Corporate branding poster',
-        category: 'branding',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop'
-      },
-      {
-        id: Date.now() + 4,
-        title: 'Abstract Dreams',
-        description: 'Conceptual art poster',
-        category: 'concept',
-        image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=600&fit=crop'
-      },
-      {
-        id: Date.now() + 5,
-        title: 'Jazz Night',
-        description: 'Elegant jazz concert poster',
-        category: 'event',
-        image: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&h=600&fit=crop'
-      }
-    ];
+function loadPosters() {
+  // Using the 8 specific images provided by the user
+  const myPosters = [
+    {
+      id: 1,
+      title: 'HACK THE HORIZON',
+      description: 'Tech event poster',
+      category: 'event',
+      image: 'HACK THE HORIZON.jpg'
+    },
+    {
+      id: 2,
+      title: 'Opening Ceremony',
+      description: 'Event invitation design',
+      category: 'event',
+      image: 'Opening ceremony.jpg'
+    },
+    {
+      id: 3,
+      title: 'VIT Gold',
+      description: 'Golden luxury design',
+      category: 'branding',
+      image: 'vit gold poster.jpg'
+    },
+    {
+      id: 4,
+      title: 'Z Flower Shop',
+      description: 'Floral shop promotion',
+      category: 'branding',
+      image: 'z flower shop.jpg'
+    },
+    {
+      id: 5,
+      title: 'Be Calm',
+      description: 'Typography art poster',
+      category: 'concept',
+      image: 'DINESH POSTER BE CALM.jpg'
+    },
+    {
+      id: 6,
+      title: 'Campus Chronicles',
+      description: 'Magazine cover design',
+      category: 'branding',
+      image: 'CAMPUS CHRONICALS-Magazine cover.jpg'
+    },
+    {
+      id: 7,
+      title: 'Vibrance Event',
+      description: 'Colorful event page',
+      category: 'event',
+      image: 'Event page -Vibrance.jpg'
+    },
+    {
+      id: 8,
+      title: 'Bottomless Breakfast',
+      description: 'Food and dining poster',
+      category: 'social',
+      image: 'Bottom Less Breakfast.jpg'
+    }
+  ];
 
-    posters = samplePosters;
-    savePostersToStorage();
-    renderGallery();
-  }
-}
-
-// ===================================
-// LOCAL STORAGE
-// ===================================
-function savePostersToStorage() {
-  localStorage.setItem('posterGallery', JSON.stringify(posters));
-}
-
-function loadPostersFromStorage() {
-  const stored = localStorage.getItem('posterGallery');
-  if (stored) {
-    posters = JSON.parse(stored);
-  }
+  posters = myPosters;
 }
 
 // ===================================
@@ -94,9 +95,6 @@ function loadPostersFromStorage() {
 function setupEventListeners() {
   // Navigation
   setupNavigation();
-
-  // Upload functionality
-  setupUpload();
 
   // Gallery filters
   setupFilters();
@@ -174,121 +172,6 @@ function setupNavbarScroll() {
 }
 
 // ===================================
-// UPLOAD FUNCTIONALITY
-// ===================================
-function setupUpload() {
-  const uploadZone = document.getElementById('uploadZone');
-  const fileInput = document.getElementById('fileInput');
-  const uploadForm = document.getElementById('uploadForm');
-
-  // Click to upload
-  uploadZone.addEventListener('click', () => {
-    fileInput.click();
-  });
-
-  // File input change
-  fileInput.addEventListener('change', (e) => {
-    handleFileSelect(e.target.files[0]);
-  });
-
-  // Drag and drop
-  uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-  });
-
-  uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-  });
-
-  uploadZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
-
-    const file = e.dataTransfer.files[0];
-    handleFileSelect(file);
-  });
-
-  // Form submission
-  uploadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    handleUploadSubmit();
-  });
-}
-
-function handleFileSelect(file) {
-  if (!file) return;
-
-  // Validate file type
-  const validTypes = ['image/jpeg', 'image/png'];
-  if (!validTypes.includes(file.type)) {
-    alert('Please upload a JPG or PNG image.');
-    return;
-  }
-
-  // Validate file size (max 5MB)
-  if (file.size > 5 * 1024 * 1024) {
-    alert('File size must be less than 5MB.');
-    return;
-  }
-
-  uploadedFile = file;
-
-  // Update UI to show file selected
-  const uploadText = document.querySelector('.upload-text');
-  uploadText.textContent = `Selected: ${file.name}`;
-  uploadText.style.color = 'var(--color-accent-cyan)';
-}
-
-function handleUploadSubmit() {
-  if (!uploadedFile) {
-    alert('Please select a file to upload.');
-    return;
-  }
-
-  const title = document.getElementById('posterTitle').value;
-  const description = document.getElementById('posterDescription').value;
-  const category = document.getElementById('posterCategory').value;
-
-  if (!title || !category) {
-    alert('Please fill in all required fields.');
-    return;
-  }
-
-  // Read file as data URL
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const newPoster = {
-      id: Date.now(),
-      title: title,
-      description: description,
-      category: category,
-      image: e.target.result
-    };
-
-    // Add to posters array
-    posters.unshift(newPoster);
-    savePostersToStorage();
-    renderGallery();
-
-    // Reset form
-    document.getElementById('uploadForm').reset();
-    uploadedFile = null;
-    const uploadText = document.querySelector('.upload-text');
-    uploadText.textContent = 'Drag & Drop your poster here';
-    uploadText.style.color = '';
-
-    // Show success message
-    alert('Poster uploaded successfully!');
-
-    // Scroll to gallery
-    document.querySelector('#posters').scrollIntoView({ behavior: 'smooth' });
-  };
-
-  reader.readAsDataURL(uploadedFile);
-}
-
-// ===================================
 // GALLERY RENDERING
 // ===================================
 function renderGallery() {
@@ -304,7 +187,7 @@ function renderGallery() {
 
   // Render posters
   if (filteredPosters.length === 0) {
-    galleryGrid.innerHTML = '<p style="text-align: center; color: var(--color-text-muted); grid-column: 1 / -1;">No posters found. Upload your first poster!</p>';
+    galleryGrid.innerHTML = '<p style="text-align: center; color: var(--color-text-muted); grid-column: 1 / -1;">No posters found in this category.</p>';
     return;
   }
 
@@ -321,19 +204,12 @@ function createPosterCard(poster) {
 
   card.innerHTML = `
     <img src="${poster.image}" alt="${poster.title}" class="poster-image">
-    <button class="poster-delete" title="Delete poster" aria-label="Delete poster">🗑️</button>
+    <!-- Delete button removed as these are portfolio items -->
     <div class="poster-overlay">
       <h3 class="poster-title">${poster.title}</h3>
       <span class="poster-category">${poster.category}</span>
     </div>
   `;
-
-  // Delete button functionality
-  const deleteBtn = card.querySelector('.poster-delete');
-  deleteBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent lightbox from opening
-    deletePoster(poster.id);
-  });
 
   // Click to open lightbox
   card.addEventListener('click', () => {
@@ -362,38 +238,6 @@ function setupFilters() {
       renderGallery();
     });
   });
-}
-
-// ===================================
-// DELETE POSTER
-// ===================================
-function deletePoster(posterId) {
-  // Find the poster
-  const poster = posters.find(p => p.id === posterId);
-
-  if (!poster) return;
-
-  // Confirm deletion
-  const confirmDelete = confirm(`Are you sure you want to delete "${poster.title}"?`);
-
-  if (!confirmDelete) return;
-
-  // Remove from array
-  posters = posters.filter(p => p.id !== posterId);
-
-  // Update storage
-  savePostersToStorage();
-
-  // Re-render gallery with animation
-  const card = document.querySelector(`[data-poster-id="${posterId}"]`);
-  if (card) {
-    card.style.animation = 'fadeOut 0.3s ease';
-    setTimeout(() => {
-      renderGallery();
-    }, 300);
-  } else {
-    renderGallery();
-  }
 }
 
 // ===================================
@@ -495,5 +339,4 @@ function formatDate(timestamp) {
 // ===================================
 // CONSOLE WELCOME MESSAGE
 // ===================================
-console.log('%c🎨 Poster Designer Portfolio', 'font-size: 20px; font-weight: bold; color: #00f5ff;');
-console.log('%cWelcome to my creative space!', 'font-size: 14px; color: #b794f6;');
+console.log('%c🎨 DINESH V Portfolio', 'font-size: 20px; font-weight: bold; color: #00f5ff;');
